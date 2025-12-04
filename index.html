@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV - Ekrem Değirmenci</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+      @page {
+        margin: 0;
+        size: A4;
+      }
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .a4-page {
+        width: 210mm;
+        min-height: 297mm;
+        background: white;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      @media print {
+        @page { margin: 0; }
+        body { margin: 0; background: white; }
+        .no-print { display: none !important; }
+        .a4-page {
+          width: 100%;
+          height: auto;
+          box-shadow: none;
+          margin: 0;
+          page-break-after: auto;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-100 text-gray-800">
+    <div id="root"></div>
+  </body>
+</html>
