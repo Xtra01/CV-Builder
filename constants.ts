@@ -99,12 +99,12 @@ export const INITIAL_CV_DATA: CVData = {
     }
   ],
   certificates: [
-    "Lean Six Sigma White Belt (CSSC)",
-    "Become an AI-Powered People Manager (LinkedIn)",
     "Google Data Analytics Certificate",
-    "PwC Data-Driven Decision Making",
+    "IBM Applied Data Science",
     "Microsoft Power BI Data Analyst",
-    "Introduction to Data Analysis using Excel (Coursera)"
+    "PwC Data-Driven Decision Making",
+    "Lean Six Sigma White Belt (CSSC)",
+    "Become an AI-Powered People Manager (LinkedIn)"
   ],
   ethics: "Gelişim psikolojisi akademik altyapım ile çocuk koruma ilkelerine ve etik değerlere tam bağlılık gösteririm. Veri yönetiminde KVKK/GDPR standartlarını, şeffaflığı ve gizliliği temel prensip olarak benimserim."
 };

@@ -6,6 +6,15 @@
     <title>CV - Ekrem Değirmenci</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- PDF.js for Visual Analysis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      // Configure PDF.js Worker
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+    </script>
     <script>
       tailwind.config = {
         theme: {
@@ -14,6 +23,9 @@
               sans: ['Inter', 'sans-serif'],
               serif: ['Merriweather', 'serif'],
             },
+            screens: {
+              'print': {'raw': 'print'},
+            }
           },
         },
       }
@@ -22,72 +34,100 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
     <style>
-      @page {
-        margin: 0;
-        size: A4;
-      }
-      body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .a4-page {
-        width: 210mm;
-        min-height: 297mm;
-        background: white;
-        margin: 0 auto;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      }
+      /* --- CANVAS & LAYOUT ENGINE --- */
       
-      /* Print Specific Utilities */
-      @media print {
-        @page { margin: 0; }
-        
-        /* Reset all layout constraints for printing */
-        html, body, #root {
-          margin: 0;
-          padding: 0;
-          background: white;
-          height: auto;
-          width: auto;
-          overflow: visible !important;
-          display: block !important;
-        }
-
-        /* Hide sidebar and other non-print elements */
-        .no-print { display: none !important; }
-
-        /* Ensure the main CV container is visible and positioned correctly */
-        .a4-page {
-          width: 210mm; /* Force A4 width */
-          max-width: 100%;
-          margin: 0;
-          box-shadow: none !important;
-          border: none !important;
-          page-break-after: auto; 
-          position: relative;
-          left: 0;
-          top: 0;
-        }
-
-        /* Remove screen-specific layout styles from wrapper divs if necessary */
-        .print-reset {
-           display: block !important;
-           overflow: visible !important;
-           height: auto !important;
-        }
+      /* 1. Base A4 Definition */
+      :root {
+        --a4-width: 210mm;
+        --a4-height: 297mm;
       }
 
-      /* Robust Page Break Logic for both Print and PDF Generation */
-      .page-break-inside-avoid {
+      body {
+        background-color: #525659; /* App background like Acrobat Reader */
+        margin: 0;
+      }
+
+      /* 2. Visual Page Simulation (The "Word" Look) */
+      .a4-page {
+        width: var(--a4-width);
+        min-height: var(--a4-height);
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden; /* Prevents overflow content */
+      }
+
+      /* 3. Atomic Rendering Rules (The "Content Awareness") */
+      
+      /* Forces an element to stay together. If it doesn't fit, it moves to next page. */
+      .atom-record {
         break-inside: avoid !important;
         page-break-inside: avoid !important;
-        display: block;
+        -webkit-column-break-inside: avoid !important;
+        box-decoration-break: clone;
         position: relative;
+        display: block; /* Flex containers sometimes ignore break rules */
       }
-      
-      .page-break-before {
-        break-before: always;
-        page-break-before: always;
+
+      /* Forces a section header to stay with at least some content below it */
+      .atom-section {
+        break-inside: auto; /* Sections can break, but... */
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* 4. Print & PDF Overrides */
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+
+        body, html, #root {
+          background: white;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow: visible !important;
+        }
+
+        .a4-page {
+          width: 210mm !important;
+          height: 297mm !important;
+          min-height: 297mm !important;
+          max-height: 297mm !important;
+          box-shadow: none !important;
+          margin: 0 !important;
+          border: none !important;
+          overflow: hidden !important;
+          page-break-after: always;
+        }
+        
+        /* Remove margin from the last page to avoid extra blank sheet */
+        .a4-page:last-child {
+          page-break-after: auto;
+        }
+
+        /* Hide UI elements */
+        .no-print, .sidebar, button, input {
+          display: none !important;
+        }
+        
+        /* Ensure layout structure remains intact */
+        #root {
+            display: block !important;
+        }
+        
+        /* Hide the shadow clone container during native print to avoid double printing */
+        div[style*="left: -9999px"] {
+            display: none !important;
+        }
       }
     </style>
   <script type="importmap">
@@ -101,7 +141,7 @@
 }
 </script>
 </head>
-  <body class="bg-gray-100 text-gray-800">
+  <body>
     <div id="root"></div>
   </body>
 </html>
