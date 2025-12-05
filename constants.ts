@@ -5,9 +5,9 @@ export const INITIAL_CV_DATA: CVData = {
   title: "Eğitim Veri Yönetimi Uzmanı & Veri Analisti",
   contact: {
     email: "ekremregister@gmail.com",
-    phone: "+90 535 446 53 89",
+    phone: "+905354465389",
     location: "İstanbul, Türkiye",
-    nationality: "T.C."
+    linkedin: "https://www.linkedin.com/in/ekrem-degirmenci/"
   },
   summary: "Eğitim kurumlarında kullanılmak üzere kapsamlı ve sürdürülebilir veri yönetim sistemleri oluşturma, akademik ve idari süreçlere ilişkin verilerin toplanması, temizlenmesi, metadata düzenlemesi ve raporlanması alanlarında uzmanlaşmış veri analitiği profesyoneli. 6 yıllık deneyim boyunca Python, Power BI, Excel (ileri), SQL ve SPSS gibi araçlarla regresyon, korelasyon, karar ağaçları, K-Means ve Naive Bayes analizleri yaparak kullanıcı dostu dashboard’lar, etki analizleri ve karar destek modelleri ürettim. KVKK/GDPR uyumlu veri güvenliği protokollerini uygulama deneyimine sahibim. Hisar Okulları'nın stratejik hedeflerine katkı sağlamak üzere, eğitim politikalarının geliştirilmesi için veri temelli stratejik içgörüler üretir, veri süreçlerinde doğruluk, şeffaflık ve erişilebilirlik standartlarını esas alırım.",
   skills: {
@@ -89,7 +89,7 @@ export const INITIAL_CV_DATA: CVData = {
     {
       institution: "Orta Doğu Teknik Üniversitesi (ODTÜ)",
       degree: "Psikoloji (İngilizce)",
-      years: "2011 – 2019",
+      years: "2012 – 2019",
       details: "Gelişimsel psikoloji, araştırma yöntemleri ve istatistiksel analiz altyapısı."
     },
     {
@@ -99,10 +99,12 @@ export const INITIAL_CV_DATA: CVData = {
     }
   ],
   certificates: [
+    "Lean Six Sigma White Belt (CSSC)",
+    "Become an AI-Powered People Manager (LinkedIn)",
     "Google Data Analytics Certificate",
-    "IBM Applied Data Science",
+    "PwC Data-Driven Decision Making",
     "Microsoft Power BI Data Analyst",
-    "PwC Data‑Driven Decision Making"
+    "Introduction to Data Analysis using Excel (Coursera)"
   ],
   ethics: "Gelişim psikolojisi akademik altyapım ile çocuk koruma ilkelerine ve etik değerlere tam bağlılık gösteririm. Veri yönetiminde KVKK/GDPR standartlarını, şeffaflığı ve gizliliği temel prensip olarak benimserim."
 };

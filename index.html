@@ -6,12 +6,24 @@
     <title>CV - Ekrem Değirmenci</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Merriweather', 'serif'],
+            },
+          },
+        },
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
     <style>
       @page {
-        margin: 10mm;
+        margin: 0;
         size: A4;
       }
       body {
@@ -28,7 +40,7 @@
       
       /* Print Specific Utilities */
       @media print {
-        @page { margin: 10mm; }
+        @page { margin: 0; }
         
         /* Reset all layout constraints for printing */
         html, body, #root {
@@ -55,7 +67,6 @@
           position: relative;
           left: 0;
           top: 0;
-          /* Removed padding: 0 !important to allow component padding to provide safe area for negative margins */
         }
 
         /* Remove screen-specific layout styles from wrapper divs if necessary */

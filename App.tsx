@@ -40,8 +40,9 @@ function App() {
     }
 
     const opt = {
-      // 10mm margin to prevent content being cut off at the edge of the printer/page
-      margin: 10, 
+      // Margin set to 0 to prevent scaling issues. 
+      // Safe area is now handled by padding inside the component (CSS).
+      margin: 0, 
       filename: 'Ekrem_Degirmenci_CV.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { 
@@ -135,8 +136,9 @@ function App() {
             <h3 className="font-semibold text-amber-400 text-sm">Düzen İpuçları</h3>
           </div>
           <ul className="text-xs text-slate-400 space-y-2 list-disc ml-4">
-             <li>PDF alırken maddelerin bölünmesini engellemek için "Akıllı Sayfa Ayrımı" (Smart Page Breaks) aktiftir.</li>
-             <li>Kenarlarda 10mm güvenli yazdırma boşluğu otomatik bırakılır.</li>
+             <li>PDF ölçekleme sorunu giderildi (Tam %100 boyut).</li>
+             <li>Kenar boşlukları baskı için optimize edildi.</li>
+             <li>Bölünmeleri engellemek için akıllı sayfa yapısı aktif.</li>
           </ul>
         </div>
         

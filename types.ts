@@ -2,7 +2,6 @@ export interface ContactInfo {
   email: string;
   phone: string;
   location: string;
-  nationality: string;
   linkedin?: string;
 }
 
