@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV - Ekrem Değirmenci</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
     <style>
       @page {
-        margin: 0;
+        margin: 10mm;
         size: A4;
       }
       body {
@@ -24,17 +25,58 @@
         margin: 0 auto;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
       }
+      
+      /* Print Specific Utilities */
       @media print {
-        @page { margin: 0; }
-        body { margin: 0; background: white; }
-        .no-print { display: none !important; }
-        .a4-page {
-          width: 100%;
-          height: auto;
-          box-shadow: none;
+        @page { margin: 10mm; }
+        
+        /* Reset all layout constraints for printing */
+        html, body, #root {
           margin: 0;
-          page-break-after: auto;
+          padding: 0;
+          background: white;
+          height: auto;
+          width: auto;
+          overflow: visible !important;
+          display: block !important;
         }
+
+        /* Hide sidebar and other non-print elements */
+        .no-print { display: none !important; }
+
+        /* Ensure the main CV container is visible and positioned correctly */
+        .a4-page {
+          width: 210mm; /* Force A4 width */
+          max-width: 100%;
+          margin: 0;
+          box-shadow: none !important;
+          border: none !important;
+          page-break-after: auto; 
+          position: relative;
+          left: 0;
+          top: 0;
+          /* Removed padding: 0 !important to allow component padding to provide safe area for negative margins */
+        }
+
+        /* Remove screen-specific layout styles from wrapper divs if necessary */
+        .print-reset {
+           display: block !important;
+           overflow: visible !important;
+           height: auto !important;
+        }
+      }
+
+      /* Robust Page Break Logic for both Print and PDF Generation */
+      .page-break-inside-avoid {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        display: block;
+        position: relative;
+      }
+      
+      .page-break-before {
+        break-before: always;
+        page-break-before: always;
       }
     </style>
   <script type="importmap">
